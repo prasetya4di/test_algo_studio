@@ -1,15 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:test_algo_studio/presentation/controller/task/task_controller.dart';
+import 'package:test_algo_studio/presentation/controller/task/task_event.dart';
 import 'package:test_algo_studio/presentation/screen/add_task/widgets/select_time_bottom_sheet.dart';
 
-class TaskTimeTextField extends StatefulWidget {
+class TaskTimeTextField extends ConsumerStatefulWidget {
   const TaskTimeTextField({super.key});
 
   @override
-  State<StatefulWidget> createState() => _TaskTimeTextFieldState();
+  ConsumerState<TaskTimeTextField> createState() => _TaskTimeTextFieldState();
 }
 
-class _TaskTimeTextFieldState extends State<TaskTimeTextField> {
+class _TaskTimeTextFieldState extends ConsumerState<TaskTimeTextField> {
   bool _timeEnabled = false;
   DateTime _selectedTime =
       DateTime.now().copyWith(hour: 0, minute: 0, second: 0);
@@ -68,7 +71,12 @@ class _TaskTimeTextFieldState extends State<TaskTimeTextField> {
                 }
               });
             },
-            onSaved: (value) {},
+            onSaved: (value) {
+              if (value != null) {
+                final taskController = ref.read(taskControllerProvider.notifier);
+                taskController.emit(TaskEvent.updateTaskTime(_selectedTime));
+              }
+            },
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'Please select correct time';

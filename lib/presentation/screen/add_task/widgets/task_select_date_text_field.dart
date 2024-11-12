@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:test_algo_studio/presentation/controller/task/task_controller.dart';
+import 'package:test_algo_studio/presentation/controller/task/task_event.dart';
 import 'package:test_algo_studio/presentation/screen/add_task/widgets/select_date_bottom_sheet.dart';
 import 'package:test_algo_studio/presentation/screen/add_task/widgets/task_form_template.dart';
 
-class TaskSelectDateTextField extends StatefulWidget {
+class TaskSelectDateTextField extends ConsumerStatefulWidget {
   const TaskSelectDateTextField({super.key});
 
   @override
-  State<TaskSelectDateTextField> createState() =>
+  ConsumerState<TaskSelectDateTextField> createState() =>
       _TaskSelectDateTextFieldState();
 }
 
-class _TaskSelectDateTextFieldState extends State<TaskSelectDateTextField> {
+class _TaskSelectDateTextFieldState extends ConsumerState<TaskSelectDateTextField> {
   DateTime _selectedDate = DateTime.now();
   final _controller = TextEditingController();
 
@@ -51,7 +54,12 @@ class _TaskSelectDateTextFieldState extends State<TaskSelectDateTextField> {
               });
             });
           },
-          onSaved: (value) {},
+          onSaved: (value) {
+            if (value != null) {
+              final taskController = ref.read(taskControllerProvider.notifier);
+              taskController.emit(TaskEvent.updateTaskDate(_selectedDate));
+            }
+          },
           validator: (value) {
             if (value == null || value.isEmpty) {
               return 'Please select correct date';

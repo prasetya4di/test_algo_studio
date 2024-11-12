@@ -12,4 +12,15 @@ class TaskEvent with _$TaskEvent {
   const factory TaskEvent.update(Task task) = Update;
 
   const factory TaskEvent.delete(Task task) = Delete;
+
+  const factory TaskEvent.clearPreviousValue() = ClearPreviousValue;
+
+  const factory TaskEvent.updateTaskTitle(String title) = UpdateTaskTitle;
+
+  const factory TaskEvent.updateTaskDescription(String description) =
+      UpdateTaskDescription;
+
+  const factory TaskEvent.updateTaskDate(DateTime date) = UpdateTaskDate;
+
+  const factory TaskEvent.updateTaskTime(DateTime? time) = UpdateTaskTime;
 }

@@ -11,12 +11,20 @@ class TaskState with _$TaskState {
     required AsyncValue<bool> addTask,
     required AsyncValue<bool> updateTask,
     required AsyncValue<bool> deleteTask,
+    required String newTaskTitle,
+    required String newTaskDescription,
+    required DateTime newTaskDate,
+    required DateTime? newTaskTime,
   }) = _TaskState;
 
-  factory TaskState.initial() => const TaskState(
-        allTask: AsyncValue.data([]),
-        addTask: AsyncValue.data(false),
-        updateTask: AsyncValue.data(false),
-        deleteTask: AsyncValue.data(false),
+  factory TaskState.initial() => TaskState(
+        allTask: const AsyncValue.data([]),
+        addTask: const AsyncValue.data(false),
+        updateTask: const AsyncValue.data(false),
+        deleteTask: const AsyncValue.data(false),
+        newTaskTitle: '',
+        newTaskDescription: '',
+        newTaskDate: DateTime.now(),
+        newTaskTime: null,
       );
 }

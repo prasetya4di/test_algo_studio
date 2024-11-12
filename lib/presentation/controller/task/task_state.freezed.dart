@@ -20,6 +20,10 @@ mixin _$TaskState {
   AsyncValue<bool> get addTask => throw _privateConstructorUsedError;
   AsyncValue<bool> get updateTask => throw _privateConstructorUsedError;
   AsyncValue<bool> get deleteTask => throw _privateConstructorUsedError;
+  String get newTaskTitle => throw _privateConstructorUsedError;
+  String get newTaskDescription => throw _privateConstructorUsedError;
+  DateTime get newTaskDate => throw _privateConstructorUsedError;
+  DateTime? get newTaskTime => throw _privateConstructorUsedError;
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -37,7 +41,11 @@ abstract class $TaskStateCopyWith<$Res> {
       {AsyncValue<List<TaskGroup>> allTask,
       AsyncValue<bool> addTask,
       AsyncValue<bool> updateTask,
-      AsyncValue<bool> deleteTask});
+      AsyncValue<bool> deleteTask,
+      String newTaskTitle,
+      String newTaskDescription,
+      DateTime newTaskDate,
+      DateTime? newTaskTime});
 }
 
 /// @nodoc
@@ -59,6 +67,10 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
     Object? addTask = null,
     Object? updateTask = null,
     Object? deleteTask = null,
+    Object? newTaskTitle = null,
+    Object? newTaskDescription = null,
+    Object? newTaskDate = null,
+    Object? newTaskTime = freezed,
   }) {
     return _then(_value.copyWith(
       allTask: null == allTask
@@ -77,6 +89,22 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
           ? _value.deleteTask
           : deleteTask // ignore: cast_nullable_to_non_nullable
               as AsyncValue<bool>,
+      newTaskTitle: null == newTaskTitle
+          ? _value.newTaskTitle
+          : newTaskTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      newTaskDescription: null == newTaskDescription
+          ? _value.newTaskDescription
+          : newTaskDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      newTaskDate: null == newTaskDate
+          ? _value.newTaskDate
+          : newTaskDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      newTaskTime: freezed == newTaskTime
+          ? _value.newTaskTime
+          : newTaskTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ) as $Val);
   }
 }
@@ -93,7 +121,11 @@ abstract class _$$TaskStateImplCopyWith<$Res>
       {AsyncValue<List<TaskGroup>> allTask,
       AsyncValue<bool> addTask,
       AsyncValue<bool> updateTask,
-      AsyncValue<bool> deleteTask});
+      AsyncValue<bool> deleteTask,
+      String newTaskTitle,
+      String newTaskDescription,
+      DateTime newTaskDate,
+      DateTime? newTaskTime});
 }
 
 /// @nodoc
@@ -113,6 +145,10 @@ class __$$TaskStateImplCopyWithImpl<$Res>
     Object? addTask = null,
     Object? updateTask = null,
     Object? deleteTask = null,
+    Object? newTaskTitle = null,
+    Object? newTaskDescription = null,
+    Object? newTaskDate = null,
+    Object? newTaskTime = freezed,
   }) {
     return _then(_$TaskStateImpl(
       allTask: null == allTask
@@ -131,6 +167,22 @@ class __$$TaskStateImplCopyWithImpl<$Res>
           ? _value.deleteTask
           : deleteTask // ignore: cast_nullable_to_non_nullable
               as AsyncValue<bool>,
+      newTaskTitle: null == newTaskTitle
+          ? _value.newTaskTitle
+          : newTaskTitle // ignore: cast_nullable_to_non_nullable
+              as String,
+      newTaskDescription: null == newTaskDescription
+          ? _value.newTaskDescription
+          : newTaskDescription // ignore: cast_nullable_to_non_nullable
+              as String,
+      newTaskDate: null == newTaskDate
+          ? _value.newTaskDate
+          : newTaskDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      newTaskTime: freezed == newTaskTime
+          ? _value.newTaskTime
+          : newTaskTime // ignore: cast_nullable_to_non_nullable
+              as DateTime?,
     ));
   }
 }
@@ -142,7 +194,11 @@ class _$TaskStateImpl implements _TaskState {
       {required this.allTask,
       required this.addTask,
       required this.updateTask,
-      required this.deleteTask});
+      required this.deleteTask,
+      required this.newTaskTitle,
+      required this.newTaskDescription,
+      required this.newTaskDate,
+      required this.newTaskTime});
 
   @override
   final AsyncValue<List<TaskGroup>> allTask;
@@ -152,10 +208,18 @@ class _$TaskStateImpl implements _TaskState {
   final AsyncValue<bool> updateTask;
   @override
   final AsyncValue<bool> deleteTask;
+  @override
+  final String newTaskTitle;
+  @override
+  final String newTaskDescription;
+  @override
+  final DateTime newTaskDate;
+  @override
+  final DateTime? newTaskTime;
 
   @override
   String toString() {
-    return 'TaskState(allTask: $allTask, addTask: $addTask, updateTask: $updateTask, deleteTask: $deleteTask)';
+    return 'TaskState(allTask: $allTask, addTask: $addTask, updateTask: $updateTask, deleteTask: $deleteTask, newTaskTitle: $newTaskTitle, newTaskDescription: $newTaskDescription, newTaskDate: $newTaskDate, newTaskTime: $newTaskTime)';
   }
 
   @override
@@ -168,12 +232,20 @@ class _$TaskStateImpl implements _TaskState {
             (identical(other.updateTask, updateTask) ||
                 other.updateTask == updateTask) &&
             (identical(other.deleteTask, deleteTask) ||
-                other.deleteTask == deleteTask));
+                other.deleteTask == deleteTask) &&
+            (identical(other.newTaskTitle, newTaskTitle) ||
+                other.newTaskTitle == newTaskTitle) &&
+            (identical(other.newTaskDescription, newTaskDescription) ||
+                other.newTaskDescription == newTaskDescription) &&
+            (identical(other.newTaskDate, newTaskDate) ||
+                other.newTaskDate == newTaskDate) &&
+            (identical(other.newTaskTime, newTaskTime) ||
+                other.newTaskTime == newTaskTime));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, allTask, addTask, updateTask, deleteTask);
+  int get hashCode => Object.hash(runtimeType, allTask, addTask, updateTask,
+      deleteTask, newTaskTitle, newTaskDescription, newTaskDate, newTaskTime);
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -189,7 +261,11 @@ abstract class _TaskState implements TaskState {
       {required final AsyncValue<List<TaskGroup>> allTask,
       required final AsyncValue<bool> addTask,
       required final AsyncValue<bool> updateTask,
-      required final AsyncValue<bool> deleteTask}) = _$TaskStateImpl;
+      required final AsyncValue<bool> deleteTask,
+      required final String newTaskTitle,
+      required final String newTaskDescription,
+      required final DateTime newTaskDate,
+      required final DateTime? newTaskTime}) = _$TaskStateImpl;
 
   @override
   AsyncValue<List<TaskGroup>> get allTask;
@@ -199,6 +275,14 @@ abstract class _TaskState implements TaskState {
   AsyncValue<bool> get updateTask;
   @override
   AsyncValue<bool> get deleteTask;
+  @override
+  String get newTaskTitle;
+  @override
+  String get newTaskDescription;
+  @override
+  DateTime get newTaskDate;
+  @override
+  DateTime? get newTaskTime;
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.

@@ -150,12 +150,14 @@ class TaskController extends BaseController<TaskEvent, TaskState> {
         tasks: [...prevData.tasks, task],
       );
       prevAllData[index] = newTaskGroup;
+      state = state.copyWith(allTask: const AsyncValue.data([]));
       state = state.copyWith(allTask: AsyncValue.data(prevAllData));
     } else {
       final newTaskGroup = TaskGroup(
         date: task.date,
         tasks: [task],
       );
+      state = state.copyWith(allTask: const AsyncValue.data([]));
       state = state.copyWith(
         allTask: AsyncValue.data([...prevAllData, newTaskGroup]),
       );
@@ -184,6 +186,7 @@ class TaskController extends BaseController<TaskEvent, TaskState> {
             prevData.tasks.where((element) => element.id != task.id).toList(),
       );
       prevAllData[index] = newTaskGroup;
+      state = state.copyWith(allTask: const AsyncValue.data([]));
       state = state.copyWith(allTask: AsyncValue.data(prevAllData));
     }
     // Todo remove all mock data
@@ -225,6 +228,26 @@ class TaskController extends BaseController<TaskEvent, TaskState> {
       add: _add,
       delete: _delete,
       update: _update,
+      clearPreviousValue: () {
+        state = state.copyWith(
+          newTaskTitle: '',
+          newTaskDescription: '',
+          newTaskDate: DateTime.now(),
+          newTaskTime: null,
+        );
+      },
+      updateTaskTitle: (title) {
+        state = state.copyWith(newTaskTitle: title);
+      },
+      updateTaskDescription: (description) {
+        state = state.copyWith(newTaskDescription: description);
+      },
+      updateTaskDate: (date) {
+        state = state.copyWith(newTaskDate: date);
+      },
+      updateTaskTime: (time) {
+        state = state.copyWith(newTaskTime: time);
+      },
     );
   }
 

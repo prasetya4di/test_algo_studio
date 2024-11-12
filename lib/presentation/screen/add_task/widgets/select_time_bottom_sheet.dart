@@ -1,6 +1,5 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:numberpicker/numberpicker.dart';
 import 'package:test_algo_studio/presentation/screen/add_task/widgets/base_number_picker.dart';
 import 'package:test_algo_studio/presentation/screen/add_task/widgets/cancel_button.dart';
 import 'package:test_algo_studio/presentation/screen/add_task/widgets/save_button.dart';

@@ -1,5 +1,5 @@
 class Task {
-  final int id;
+  final int? id;
   final String title;
   final String description;
   final DateTime date;
@@ -7,7 +7,7 @@ class Task {
   final bool isComplete;
 
   Task({
-    required this.id,
+    this.id,
     required this.title,
     required this.description,
     required this.date,
