@@ -93,7 +93,6 @@ class AddTaskScreen extends ConsumerWidget {
 
                     final taskState = ref.read(taskControllerProvider);
                     final newTask = Task(
-                      id: 101,
                       title: taskState.newTaskTitle,
                       description: taskState.newTaskDescription,
                       date: DateTime(

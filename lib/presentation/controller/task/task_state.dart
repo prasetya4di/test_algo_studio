@@ -1,5 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:test_algo_studio/domain/entity/task.dart';
 import 'package:test_algo_studio/domain/entity/task_group.dart';
 
 part 'task_state.freezed.dart';
@@ -15,6 +16,8 @@ class TaskState with _$TaskState {
     required String newTaskDescription,
     required DateTime newTaskDate,
     required DateTime? newTaskTime,
+    required Task? newTask,
+    required Task? deletedTask,
   }) = _TaskState;
 
   factory TaskState.initial() => TaskState(
@@ -26,5 +29,7 @@ class TaskState with _$TaskState {
         newTaskDescription: '',
         newTaskDate: DateTime.now(),
         newTaskTime: null,
+        newTask: null,
+        deletedTask: null,
       );
 }

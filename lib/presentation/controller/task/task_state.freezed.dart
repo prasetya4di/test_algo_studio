@@ -24,6 +24,8 @@ mixin _$TaskState {
   String get newTaskDescription => throw _privateConstructorUsedError;
   DateTime get newTaskDate => throw _privateConstructorUsedError;
   DateTime? get newTaskTime => throw _privateConstructorUsedError;
+  Task? get newTask => throw _privateConstructorUsedError;
+  Task? get deletedTask => throw _privateConstructorUsedError;
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -45,7 +47,9 @@ abstract class $TaskStateCopyWith<$Res> {
       String newTaskTitle,
       String newTaskDescription,
       DateTime newTaskDate,
-      DateTime? newTaskTime});
+      DateTime? newTaskTime,
+      Task? newTask,
+      Task? deletedTask});
 }
 
 /// @nodoc
@@ -71,6 +75,8 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
     Object? newTaskDescription = null,
     Object? newTaskDate = null,
     Object? newTaskTime = freezed,
+    Object? newTask = freezed,
+    Object? deletedTask = freezed,
   }) {
     return _then(_value.copyWith(
       allTask: null == allTask
@@ -105,6 +111,14 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
           ? _value.newTaskTime
           : newTaskTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      newTask: freezed == newTask
+          ? _value.newTask
+          : newTask // ignore: cast_nullable_to_non_nullable
+              as Task?,
+      deletedTask: freezed == deletedTask
+          ? _value.deletedTask
+          : deletedTask // ignore: cast_nullable_to_non_nullable
+              as Task?,
     ) as $Val);
   }
 }
@@ -125,7 +139,9 @@ abstract class _$$TaskStateImplCopyWith<$Res>
       String newTaskTitle,
       String newTaskDescription,
       DateTime newTaskDate,
-      DateTime? newTaskTime});
+      DateTime? newTaskTime,
+      Task? newTask,
+      Task? deletedTask});
 }
 
 /// @nodoc
@@ -149,6 +165,8 @@ class __$$TaskStateImplCopyWithImpl<$Res>
     Object? newTaskDescription = null,
     Object? newTaskDate = null,
     Object? newTaskTime = freezed,
+    Object? newTask = freezed,
+    Object? deletedTask = freezed,
   }) {
     return _then(_$TaskStateImpl(
       allTask: null == allTask
@@ -183,6 +201,14 @@ class __$$TaskStateImplCopyWithImpl<$Res>
           ? _value.newTaskTime
           : newTaskTime // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      newTask: freezed == newTask
+          ? _value.newTask
+          : newTask // ignore: cast_nullable_to_non_nullable
+              as Task?,
+      deletedTask: freezed == deletedTask
+          ? _value.deletedTask
+          : deletedTask // ignore: cast_nullable_to_non_nullable
+              as Task?,
     ));
   }
 }
@@ -198,7 +224,9 @@ class _$TaskStateImpl implements _TaskState {
       required this.newTaskTitle,
       required this.newTaskDescription,
       required this.newTaskDate,
-      required this.newTaskTime});
+      required this.newTaskTime,
+      required this.newTask,
+      required this.deletedTask});
 
   @override
   final AsyncValue<List<TaskGroup>> allTask;
@@ -216,10 +244,14 @@ class _$TaskStateImpl implements _TaskState {
   final DateTime newTaskDate;
   @override
   final DateTime? newTaskTime;
+  @override
+  final Task? newTask;
+  @override
+  final Task? deletedTask;
 
   @override
   String toString() {
-    return 'TaskState(allTask: $allTask, addTask: $addTask, updateTask: $updateTask, deleteTask: $deleteTask, newTaskTitle: $newTaskTitle, newTaskDescription: $newTaskDescription, newTaskDate: $newTaskDate, newTaskTime: $newTaskTime)';
+    return 'TaskState(allTask: $allTask, addTask: $addTask, updateTask: $updateTask, deleteTask: $deleteTask, newTaskTitle: $newTaskTitle, newTaskDescription: $newTaskDescription, newTaskDate: $newTaskDate, newTaskTime: $newTaskTime, newTask: $newTask, deletedTask: $deletedTask)';
   }
 
   @override
@@ -240,12 +272,25 @@ class _$TaskStateImpl implements _TaskState {
             (identical(other.newTaskDate, newTaskDate) ||
                 other.newTaskDate == newTaskDate) &&
             (identical(other.newTaskTime, newTaskTime) ||
-                other.newTaskTime == newTaskTime));
+                other.newTaskTime == newTaskTime) &&
+            (identical(other.newTask, newTask) || other.newTask == newTask) &&
+            (identical(other.deletedTask, deletedTask) ||
+                other.deletedTask == deletedTask));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, allTask, addTask, updateTask,
-      deleteTask, newTaskTitle, newTaskDescription, newTaskDate, newTaskTime);
+  int get hashCode => Object.hash(
+      runtimeType,
+      allTask,
+      addTask,
+      updateTask,
+      deleteTask,
+      newTaskTitle,
+      newTaskDescription,
+      newTaskDate,
+      newTaskTime,
+      newTask,
+      deletedTask);
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -265,7 +310,9 @@ abstract class _TaskState implements TaskState {
       required final String newTaskTitle,
       required final String newTaskDescription,
       required final DateTime newTaskDate,
-      required final DateTime? newTaskTime}) = _$TaskStateImpl;
+      required final DateTime? newTaskTime,
+      required final Task? newTask,
+      required final Task? deletedTask}) = _$TaskStateImpl;
 
   @override
   AsyncValue<List<TaskGroup>> get allTask;
@@ -283,6 +330,10 @@ abstract class _TaskState implements TaskState {
   DateTime get newTaskDate;
   @override
   DateTime? get newTaskTime;
+  @override
+  Task? get newTask;
+  @override
+  Task? get deletedTask;
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.

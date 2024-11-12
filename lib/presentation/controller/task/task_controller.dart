@@ -52,16 +52,18 @@ class TaskController extends BaseController<TaskEvent, TaskState> {
         tasks: [...prevData.tasks, newTask],
       );
       prevAllData[index] = newTaskGroup;
-      state = state.copyWith(allTask: const AsyncValue.data([]));
-      state = state.copyWith(allTask: AsyncValue.data(prevAllData));
+      state = state.copyWith(
+        allTask: AsyncValue.data(prevAllData),
+        newTask: newTask,
+      );
     } else {
       final newTaskGroup = TaskGroup(
         date: newTask.date,
         tasks: [newTask],
       );
-      state = state.copyWith(allTask: const AsyncValue.data([]));
       state = state.copyWith(
         allTask: AsyncValue.data([...prevAllData, newTaskGroup]),
+        newTask: newTask,
       );
     }
     state = state.copyWith(addTask: const AsyncValue.data(true));
