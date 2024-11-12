@@ -9,6 +9,9 @@ class NewTaskButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
         backgroundColor: Colors.blue,
         iconColor: Colors.white,
       ),

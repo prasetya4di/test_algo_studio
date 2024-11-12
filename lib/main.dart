@@ -27,7 +27,21 @@ class MyApp extends StatelessWidget {
           color: Colors.white,
           surfaceTintColor: Colors.white,
         ),
+        bottomSheetTheme:  BottomSheetThemeData(
+          backgroundColor: Colors.white,
+          surfaceTintColor: Colors.white,
+          shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(12),
+              topRight: Radius.circular(12),
+            ),
+          ),
+          showDragHandle: true,
+          dragHandleColor: Colors.grey[200],
+          dragHandleSize: const Size(80, 4),
+        ),
         appBarTheme: AppBarTheme(
+          iconTheme: const IconThemeData(color: Colors.blue),
           backgroundColor: Colors.white,
           surfaceTintColor: Colors.white,
           centerTitle: false,
