@@ -1,9 +1,13 @@
 import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_algo_studio/presentation/controller/task/task_controller.dart';
 import 'package:test_algo_studio/presentation/controller/task/task_event.dart';
+import 'package:test_algo_studio/presentation/router/app_router.dart';
+import 'package:test_algo_studio/presentation/router/app_router.gr.dart';
 import 'package:test_algo_studio/presentation/screen/task/widget/list_task.dart';
+import 'package:test_algo_studio/presentation/screen/task/widget/new_task_button.dart';
 
 @RoutePage()
 class TaskScreen extends ConsumerStatefulWidget {
@@ -29,6 +33,10 @@ class _TaskScreenState extends ConsumerState<TaskScreen> {
       appBar: AppBar(
         title: const Text('To Do List'),
         centerTitle: false,
+        actions: const [
+          NewTaskButton(),
+          SizedBox(width: 8),
+        ],
       ),
       body: ref
           .watch(taskControllerProvider.select((value) => value.allTask))
