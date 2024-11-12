@@ -180,7 +180,8 @@ class TaskController extends BaseController<TaskEvent, TaskState> {
     if (prevData != null) {
       final index = prevAllData.indexOf(prevData);
       final newTaskGroup = prevData.copyWith(
-        tasks: prevData.tasks.where((element) => element.id != task.id).toList(),
+        tasks:
+            prevData.tasks.where((element) => element.id != task.id).toList(),
       );
       prevAllData[index] = newTaskGroup;
       state = state.copyWith(allTask: AsyncValue.data(prevAllData));
@@ -206,3 +207,8 @@ class TaskController extends BaseController<TaskEvent, TaskState> {
     }
   }
 }
+
+final taskControllerProvider =
+    StateNotifierProvider.autoDispose<TaskController, TaskState>(
+  (ref) => TaskController(),
+);
