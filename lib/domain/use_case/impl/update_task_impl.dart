@@ -10,8 +10,8 @@ class UpdateTaskImpl implements UpdateTask {
   UpdateTaskImpl(this.taskRepository);
 
   @override
-  Future<Task> call(Task task) async {
-    return await taskRepository.insert(task);
+  Future<void> call(Task task) async {
+    await taskRepository.update(task);
   }
 }
 

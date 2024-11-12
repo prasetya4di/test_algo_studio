@@ -10,8 +10,8 @@ class DeleteTaskImpl implements DeleteTask {
   DeleteTaskImpl(this.taskRepository);
 
   @override
-  Future<Task> call(Task task) async {
-    return await taskRepository.insert(task);
+  Future<void> call(Task task) async {
+    return await taskRepository.delete(task);
   }
 }
 
