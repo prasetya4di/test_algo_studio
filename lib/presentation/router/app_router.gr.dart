@@ -11,7 +11,7 @@
 import 'package:auto_route/auto_route.dart' as _i3;
 import 'package:test_algo_studio/presentation/screen/add_task/add_task_screen.dart'
     as _i1;
-import 'package:test_algo_studio/presentation/screen/home/home_screen.dart'
+import 'package:test_algo_studio/presentation/screen/task/task_screen.dart'
     as _i2;
 
 /// generated route for
@@ -34,20 +34,20 @@ class AddTaskRoute extends _i3.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.HomeScreen]
-class HomeRoute extends _i3.PageRouteInfo<void> {
-  const HomeRoute({List<_i3.PageRouteInfo>? children})
+/// [_i2.TaskScreen]
+class TaskRoute extends _i3.PageRouteInfo<void> {
+  const TaskRoute({List<_i3.PageRouteInfo>? children})
       : super(
-          HomeRoute.name,
+          TaskRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'HomeRoute';
+  static const String name = 'TaskRoute';
 
   static _i3.PageInfo page = _i3.PageInfo(
     name,
     builder: (data) {
-      return const _i2.HomeScreen();
+      return const _i2.TaskScreen();
     },
   );
 }
