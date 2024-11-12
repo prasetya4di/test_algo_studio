@@ -31,7 +31,7 @@ class ListTask extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 itemBuilder: (context, index) {
                   final task = data.tasks[index];
-                  return TaskItem(task: task);
+                  return TaskItem(key: Key("${task.id ?? index}"), task: task);
                 },
               ),
             ],
