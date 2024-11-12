@@ -1,175 +1,76 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_algo_studio/domain/entity/task.dart';
 import 'package:test_algo_studio/domain/entity/task_group.dart';
+import 'package:test_algo_studio/domain/use_case/add_task.dart';
+import 'package:test_algo_studio/domain/use_case/delete_task.dart';
+import 'package:test_algo_studio/domain/use_case/get_task.dart';
+import 'package:test_algo_studio/domain/use_case/impl/add_task_impl.dart';
+import 'package:test_algo_studio/domain/use_case/impl/delete_task_impl.dart';
+import 'package:test_algo_studio/domain/use_case/impl/get_task_impl.dart';
+import 'package:test_algo_studio/domain/use_case/impl/update_task_impl.dart';
+import 'package:test_algo_studio/domain/use_case/update_task.dart';
 import 'package:test_algo_studio/presentation/controller/task/task_event.dart';
 import 'package:test_algo_studio/presentation/controller/task/task_state.dart';
 import 'package:test_algo_studio/presentation/controller/util/base_controller.dart';
 
 class TaskController extends BaseController<TaskEvent, TaskState> {
-  TaskController() : super(TaskState.initial());
+  final AddTask _addTaskUseCase;
+  final UpdateTask _updateTaskUseCase;
+  final GetTask _getTaskUseCase;
+  final DeleteTask _deleteTaskUseCase;
+
+  TaskController(
+    this._addTaskUseCase,
+    this._updateTaskUseCase,
+    this._getTaskUseCase,
+    this._deleteTaskUseCase,
+  ) : super(TaskState.initial());
 
   _get() async {
     if (state.allTask is AsyncLoading) return;
     state = state.copyWith(allTask: const AsyncLoading());
-    // Todo get all task use case
-    state = state.copyWith(
-      allTask: AsyncValue.data(
-        [
-          TaskGroup(
-            date: DateTime(2024, 11, 12),
-            tasks: [
-              Task(
-                id: 1,
-                title: 'Task 1',
-                description: 'Description 1',
-                date: DateTime(2024, 11, 12),
-                useTime: false,
-                isComplete: false,
-              ),
-              Task(
-                id: 2,
-                title: 'Task 2',
-                description: 'Description 2',
-                date: DateTime(2024, 11, 12),
-                useTime: false,
-                isComplete: false,
-              ),
-              Task(
-                id: 3,
-                title: 'Task 3',
-                description: 'Description 3',
-                date: DateTime(2024, 11, 12, 11, 0, 0),
-                useTime: true,
-                isComplete: false,
-              ),
-              Task(
-                id: 4,
-                title: 'Task 4',
-                description: 'Description 3',
-                date: DateTime(2024, 11, 12, 12, 0, 0),
-                useTime: true,
-                isComplete: false,
-              ),
-            ],
-          ),
-          TaskGroup(
-            date: DateTime(2024, 11, 13),
-            tasks: [
-              Task(
-                id: 9,
-                title: 'Prepare Presentation',
-                description: 'Prepare slides for the client presentation',
-                date: DateTime(2024, 11, 13),
-                useTime: false,
-                isComplete: false,
-              ),
-              Task(
-                id: 10,
-                title: 'Team Lunch',
-                description: 'Have lunch with the team',
-                date: DateTime(2024, 11, 13, 12, 30, 0),
-                useTime: true,
-                isComplete: false,
-              ),
-              Task(
-                id: 11,
-                title: 'Send Invoice',
-                description: 'Send invoice to Client B',
-                date: DateTime(2024, 11, 13),
-                useTime: false,
-                isComplete: false,
-              ),
-              Task(
-                id: 12,
-                title: 'Brainstorm Ideas',
-                description: 'Brainstorm new ideas for upcoming projects',
-                date: DateTime(2024, 11, 13, 15, 0, 0),
-                useTime: true,
-                isComplete: false,
-              ),
-            ],
-          ),
-          TaskGroup(
-            date: DateTime(2024, 11, 15),
-            tasks: [
-              Task(
-                id: 13,
-                title: 'Pay Bills',
-                description: 'Pay all pending utility bills',
-                date: DateTime(2024, 11, 15),
-                useTime: false,
-                isComplete: false,
-              ),
-              Task(
-                id: 14,
-                title: 'Call Mom',
-                description: 'Call mom to catch up',
-                date: DateTime(2024, 11, 15),
-                useTime: false,
-                isComplete: false,
-              ),
-              Task(
-                id: 15,
-                title: 'Read Book',
-                description: 'Continue reading the current book',
-                date: DateTime(2024, 11, 15),
-                useTime: false,
-                isComplete: false,
-              ),
-              Task(
-                id: 16,
-                title: 'Workout',
-                description: 'Go for a run or hit the gym',
-                date: DateTime(2024, 11, 15),
-                useTime: false,
-                isComplete: false,
-              ),
-            ],
-          ),
-        ],
-      ),
-    );
+    final result = await _getTaskUseCase();
+    state = state.copyWith(allTask: AsyncValue.data(result));
   }
 
   _add(Task task) async {
     if (state.addTask is AsyncLoading) return;
     state = state.copyWith(addTask: const AsyncLoading());
-    // Todo add task use case
+    final newTask = await _addTaskUseCase(task);
     final prevAllData = state.allTask.value ?? [];
     final prevData = state.allTask.value
         ?.where(
           (element) =>
-              element.date.year == task.date.year &&
-              element.date.month == task.date.month &&
-              element.date.day == task.date.day,
+              element.date.year == newTask.date.year &&
+              element.date.month == newTask.date.month &&
+              element.date.day == newTask.date.day,
         )
         .firstOrNull;
     if (prevData != null) {
       final index = prevAllData.indexOf(prevData);
       final newTaskGroup = prevData.copyWith(
-        tasks: [...prevData.tasks, task],
+        tasks: [...prevData.tasks, newTask],
       );
       prevAllData[index] = newTaskGroup;
       state = state.copyWith(allTask: const AsyncValue.data([]));
       state = state.copyWith(allTask: AsyncValue.data(prevAllData));
     } else {
       final newTaskGroup = TaskGroup(
-        date: task.date,
-        tasks: [task],
+        date: newTask.date,
+        tasks: [newTask],
       );
       state = state.copyWith(allTask: const AsyncValue.data([]));
       state = state.copyWith(
         allTask: AsyncValue.data([...prevAllData, newTaskGroup]),
       );
     }
-    // Todo remove all mock data
     state = state.copyWith(addTask: const AsyncValue.data(true));
   }
 
   _delete(Task task) async {
     if (state.deleteTask is AsyncLoading) return;
     state = state.copyWith(deleteTask: const AsyncLoading());
-    // Todo delete task use case
+    await _deleteTaskUseCase(task);
     final prevAllData = state.allTask.value ?? [];
     final prevData = state.allTask.value
         ?.where(
@@ -189,14 +90,13 @@ class TaskController extends BaseController<TaskEvent, TaskState> {
       state = state.copyWith(allTask: const AsyncValue.data([]));
       state = state.copyWith(allTask: AsyncValue.data(prevAllData));
     }
-    // Todo remove all mock data
     state = state.copyWith(deleteTask: const AsyncValue.data(true));
   }
 
   _update(Task task) async {
     if (state.updateTask is AsyncLoading) return;
     state = state.copyWith(updateTask: const AsyncLoading());
-    // Todo update task use case
+    await _updateTaskUseCase(task);
     final prevAllData = state.allTask.value ?? [];
     final prevData = state.allTask.value
         ?.where(
@@ -209,15 +109,12 @@ class TaskController extends BaseController<TaskEvent, TaskState> {
     if (prevData != null) {
       final index = prevAllData.indexOf(prevData);
       final newTaskGroup = prevData.copyWith(
-        tasks: prevData.tasks
-            .map((e) => e.id == task.id ? task : e)
-            .toList(),
+        tasks: prevData.tasks.map((e) => e.id == task.id ? task : e).toList(),
       );
       prevAllData[index] = newTaskGroup;
       state = state.copyWith(allTask: const AsyncValue.data([]));
       state = state.copyWith(allTask: AsyncValue.data(prevAllData));
     }
-    // Todo remove all mock data
     state = state.copyWith(updateTask: const AsyncValue.data(true));
   }
 
@@ -268,5 +165,10 @@ class TaskController extends BaseController<TaskEvent, TaskState> {
 
 final taskControllerProvider =
     StateNotifierProvider.autoDispose<TaskController, TaskState>(
-  (ref) => TaskController(),
+  (ref) => TaskController(
+    ref.read(addTaskProvider),
+    ref.read(updateTaskProvider),
+    ref.read(getTaskProvider),
+    ref.read(deleteTaskProvider),
+  ),
 );
