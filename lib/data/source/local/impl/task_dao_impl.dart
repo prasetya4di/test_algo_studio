@@ -1,3 +1,4 @@
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_algo_studio/data/source/local/task_dao.dart';
 import 'package:test_algo_studio/domain/entity/task.dart';
 import 'package:test_algo_studio/domain/entity/task_group.dart';
@@ -27,3 +28,5 @@ class TaskDaoImpl implements TaskDao {
     throw UnimplementedError();
   }
 }
+
+final taskDaoProvider = Provider.autoDispose<TaskDao>((ref) => TaskDaoImpl());
