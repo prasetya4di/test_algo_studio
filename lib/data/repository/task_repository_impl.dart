@@ -12,7 +12,7 @@ class TaskRepositoryImpl implements TaskRepository {
 
   @override
   Future<void> delete(Task task) async {
-    await taskDao.delete();
+    await taskDao.delete(task);
   }
 
   @override

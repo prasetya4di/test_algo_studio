@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:test_algo_studio/domain/entity/task.dart';
 import 'package:test_algo_studio/presentation/router/app_router.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  await Hive.initFlutter();
+  Hive.registerAdapter(TaskAdapter());
   runApp(ProviderScope(child: MyApp()));
 }
 

@@ -13,7 +13,6 @@ class ListTask extends StatelessWidget {
   Widget build(BuildContext context) {
     return StickyHeader(
       child: ListView.builder(
-        shrinkWrap: true,
         itemCount: tasks.length,
         itemBuilder: (context, index) {
           final data = tasks[index];

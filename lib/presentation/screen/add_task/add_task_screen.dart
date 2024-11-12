@@ -30,7 +30,7 @@ class AddTaskScreen extends ConsumerWidget {
       (prevState, state) {
         state.when(
           data: (data) {
-            context.maybePop();
+            context.router.popUntilRouteWithName(AddTaskRoute.name);
             if (data) {
               context.router.popUntilRouteWithName(TaskRoute.name);
             } else {
@@ -38,7 +38,7 @@ class AddTaskScreen extends ConsumerWidget {
             }
           },
           error: (_, __) {
-            context.maybePop();
+            context.router.popUntilRouteWithName(AddTaskRoute.name);
             showFailedSnackBar();
           },
           loading: () {

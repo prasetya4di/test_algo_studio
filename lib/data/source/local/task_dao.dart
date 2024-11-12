@@ -8,5 +8,5 @@ abstract class TaskDao {
 
   Future<void> update(Task task);
 
-  Future<void> delete();
+  Future<void> delete(Task task);
 }
