@@ -90,7 +90,7 @@ class TaskController extends BaseController<TaskEvent, TaskState> {
             ],
           ),
           TaskGroup(
-            date: DateTime(2024, 11, 14),
+            date: DateTime(2024, 11, 15),
             tasks: [
               Task(
                 id: 13,
@@ -190,9 +190,42 @@ class TaskController extends BaseController<TaskEvent, TaskState> {
     state = state.copyWith(deleteTask: const AsyncValue.data(true));
   }
 
+  _update(Task task) async {
+    if (state.updateTask is AsyncLoading) return;
+    state = state.copyWith(updateTask: const AsyncLoading());
+    // Todo update task use case
+    final prevAllData = state.allTask.value ?? [];
+    final prevData = state.allTask.value
+        ?.where(
+          (element) =>
+              element.date.year == task.date.year &&
+              element.date.month == task.date.month &&
+              element.date.day == task.date.day,
+        )
+        .firstOrNull;
+    if (prevData != null) {
+      final index = prevAllData.indexOf(prevData);
+      final newTaskGroup = prevData.copyWith(
+        tasks: prevData.tasks
+            .map((e) => e.id == task.id ? task : e)
+            .toList(),
+      );
+      prevAllData[index] = newTaskGroup;
+      state = state.copyWith(allTask: const AsyncValue.data([]));
+      state = state.copyWith(allTask: AsyncValue.data(prevAllData));
+    }
+    // Todo remove all mock data
+    state = state.copyWith(updateTask: const AsyncValue.data(true));
+  }
+
   @override
   Future<void> onEvent(TaskEvent event) async {
-    await event.when(get: _get, add: _add, delete: _delete);
+    await event.when(
+      get: _get,
+      add: _add,
+      delete: _delete,
+      update: _update,
+    );
   }
 
   @override
@@ -204,6 +237,8 @@ class TaskController extends BaseController<TaskEvent, TaskState> {
       state = state.copyWith(addTask: AsyncValue.error(error, stackTrace));
     } else if (event is Delete) {
       state = state.copyWith(deleteTask: AsyncValue.error(error, stackTrace));
+    } else if (event is Update) {
+      state = state.copyWith(updateTask: AsyncValue.error(error, stackTrace));
     }
   }
 }

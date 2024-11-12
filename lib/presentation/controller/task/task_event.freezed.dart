@@ -20,6 +20,7 @@ mixin _$TaskEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() get,
     required TResult Function(Task task) add,
+    required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
   }) =>
       throw _privateConstructorUsedError;
@@ -27,6 +28,7 @@ mixin _$TaskEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? get,
     TResult? Function(Task task)? add,
+    TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
   }) =>
       throw _privateConstructorUsedError;
@@ -34,6 +36,7 @@ mixin _$TaskEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? get,
     TResult Function(Task task)? add,
+    TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
     required TResult orElse(),
   }) =>
@@ -42,6 +45,7 @@ mixin _$TaskEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(Get value) get,
     required TResult Function(Add value) add,
+    required TResult Function(Update value) update,
     required TResult Function(Delete value) delete,
   }) =>
       throw _privateConstructorUsedError;
@@ -49,6 +53,7 @@ mixin _$TaskEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Get value)? get,
     TResult? Function(Add value)? add,
+    TResult? Function(Update value)? update,
     TResult? Function(Delete value)? delete,
   }) =>
       throw _privateConstructorUsedError;
@@ -56,6 +61,7 @@ mixin _$TaskEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Get value)? get,
     TResult Function(Add value)? add,
+    TResult Function(Update value)? update,
     TResult Function(Delete value)? delete,
     required TResult orElse(),
   }) =>
@@ -123,6 +129,7 @@ class _$GetImpl implements Get {
   TResult when<TResult extends Object?>({
     required TResult Function() get,
     required TResult Function(Task task) add,
+    required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
   }) {
     return get();
@@ -133,6 +140,7 @@ class _$GetImpl implements Get {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? get,
     TResult? Function(Task task)? add,
+    TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
   }) {
     return get?.call();
@@ -143,6 +151,7 @@ class _$GetImpl implements Get {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? get,
     TResult Function(Task task)? add,
+    TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
     required TResult orElse(),
   }) {
@@ -157,6 +166,7 @@ class _$GetImpl implements Get {
   TResult map<TResult extends Object?>({
     required TResult Function(Get value) get,
     required TResult Function(Add value) add,
+    required TResult Function(Update value) update,
     required TResult Function(Delete value) delete,
   }) {
     return get(this);
@@ -167,6 +177,7 @@ class _$GetImpl implements Get {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Get value)? get,
     TResult? Function(Add value)? add,
+    TResult? Function(Update value)? update,
     TResult? Function(Delete value)? delete,
   }) {
     return get?.call(this);
@@ -177,6 +188,7 @@ class _$GetImpl implements Get {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Get value)? get,
     TResult Function(Add value)? add,
+    TResult Function(Update value)? update,
     TResult Function(Delete value)? delete,
     required TResult orElse(),
   }) {
@@ -259,6 +271,7 @@ class _$AddImpl implements Add {
   TResult when<TResult extends Object?>({
     required TResult Function() get,
     required TResult Function(Task task) add,
+    required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
   }) {
     return add(task);
@@ -269,6 +282,7 @@ class _$AddImpl implements Add {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? get,
     TResult? Function(Task task)? add,
+    TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
   }) {
     return add?.call(task);
@@ -279,6 +293,7 @@ class _$AddImpl implements Add {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? get,
     TResult Function(Task task)? add,
+    TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
     required TResult orElse(),
   }) {
@@ -293,6 +308,7 @@ class _$AddImpl implements Add {
   TResult map<TResult extends Object?>({
     required TResult Function(Get value) get,
     required TResult Function(Add value) add,
+    required TResult Function(Update value) update,
     required TResult Function(Delete value) delete,
   }) {
     return add(this);
@@ -303,6 +319,7 @@ class _$AddImpl implements Add {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Get value)? get,
     TResult? Function(Add value)? add,
+    TResult? Function(Update value)? update,
     TResult? Function(Delete value)? delete,
   }) {
     return add?.call(this);
@@ -313,6 +330,7 @@ class _$AddImpl implements Add {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Get value)? get,
     TResult Function(Add value)? add,
+    TResult Function(Update value)? update,
     TResult Function(Delete value)? delete,
     required TResult orElse(),
   }) {
@@ -332,6 +350,158 @@ abstract class Add implements TaskEvent {
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
   _$$AddImplCopyWith<_$AddImpl> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$$UpdateImplCopyWith<$Res> {
+  factory _$$UpdateImplCopyWith(
+          _$UpdateImpl value, $Res Function(_$UpdateImpl) then) =
+      __$$UpdateImplCopyWithImpl<$Res>;
+  @useResult
+  $Res call({Task task});
+}
+
+/// @nodoc
+class __$$UpdateImplCopyWithImpl<$Res>
+    extends _$TaskEventCopyWithImpl<$Res, _$UpdateImpl>
+    implements _$$UpdateImplCopyWith<$Res> {
+  __$$UpdateImplCopyWithImpl(
+      _$UpdateImpl _value, $Res Function(_$UpdateImpl) _then)
+      : super(_value, _then);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? task = null,
+  }) {
+    return _then(_$UpdateImpl(
+      null == task
+          ? _value.task
+          : task // ignore: cast_nullable_to_non_nullable
+              as Task,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$UpdateImpl implements Update {
+  const _$UpdateImpl(this.task);
+
+  @override
+  final Task task;
+
+  @override
+  String toString() {
+    return 'TaskEvent.update(task: $task)';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _$UpdateImpl &&
+            (identical(other.task, task) || other.task == task));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, task);
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @override
+  @pragma('vm:prefer-inline')
+  _$$UpdateImplCopyWith<_$UpdateImpl> get copyWith =>
+      __$$UpdateImplCopyWithImpl<_$UpdateImpl>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() get,
+    required TResult Function(Task task) add,
+    required TResult Function(Task task) update,
+    required TResult Function(Task task) delete,
+  }) {
+    return update(task);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? get,
+    TResult? Function(Task task)? add,
+    TResult? Function(Task task)? update,
+    TResult? Function(Task task)? delete,
+  }) {
+    return update?.call(task);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? get,
+    TResult Function(Task task)? add,
+    TResult Function(Task task)? update,
+    TResult Function(Task task)? delete,
+    required TResult orElse(),
+  }) {
+    if (update != null) {
+      return update(task);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Get value) get,
+    required TResult Function(Add value) add,
+    required TResult Function(Update value) update,
+    required TResult Function(Delete value) delete,
+  }) {
+    return update(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Get value)? get,
+    TResult? Function(Add value)? add,
+    TResult? Function(Update value)? update,
+    TResult? Function(Delete value)? delete,
+  }) {
+    return update?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Get value)? get,
+    TResult Function(Add value)? add,
+    TResult Function(Update value)? update,
+    TResult Function(Delete value)? delete,
+    required TResult orElse(),
+  }) {
+    if (update != null) {
+      return update(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Update implements TaskEvent {
+  const factory Update(final Task task) = _$UpdateImpl;
+
+  Task get task;
+
+  /// Create a copy of TaskEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  _$$UpdateImplCopyWith<_$UpdateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
@@ -405,6 +575,7 @@ class _$DeleteImpl implements Delete {
   TResult when<TResult extends Object?>({
     required TResult Function() get,
     required TResult Function(Task task) add,
+    required TResult Function(Task task) update,
     required TResult Function(Task task) delete,
   }) {
     return delete(task);
@@ -415,6 +586,7 @@ class _$DeleteImpl implements Delete {
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? get,
     TResult? Function(Task task)? add,
+    TResult? Function(Task task)? update,
     TResult? Function(Task task)? delete,
   }) {
     return delete?.call(task);
@@ -425,6 +597,7 @@ class _$DeleteImpl implements Delete {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? get,
     TResult Function(Task task)? add,
+    TResult Function(Task task)? update,
     TResult Function(Task task)? delete,
     required TResult orElse(),
   }) {
@@ -439,6 +612,7 @@ class _$DeleteImpl implements Delete {
   TResult map<TResult extends Object?>({
     required TResult Function(Get value) get,
     required TResult Function(Add value) add,
+    required TResult Function(Update value) update,
     required TResult Function(Delete value) delete,
   }) {
     return delete(this);
@@ -449,6 +623,7 @@ class _$DeleteImpl implements Delete {
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(Get value)? get,
     TResult? Function(Add value)? add,
+    TResult? Function(Update value)? update,
     TResult? Function(Delete value)? delete,
   }) {
     return delete?.call(this);
@@ -459,6 +634,7 @@ class _$DeleteImpl implements Delete {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Get value)? get,
     TResult Function(Add value)? add,
+    TResult Function(Update value)? update,
     TResult Function(Delete value)? delete,
     required TResult orElse(),
   }) {

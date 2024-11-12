@@ -9,12 +9,14 @@ class TaskState with _$TaskState {
   const factory TaskState({
     required AsyncValue<List<TaskGroup>> allTask,
     required AsyncValue<bool> addTask,
+    required AsyncValue<bool> updateTask,
     required AsyncValue<bool> deleteTask,
   }) = _TaskState;
 
   factory TaskState.initial() => const TaskState(
         allTask: AsyncValue.data([]),
         addTask: AsyncValue.data(false),
+        updateTask: AsyncValue.data(false),
         deleteTask: AsyncValue.data(false),
       );
 }

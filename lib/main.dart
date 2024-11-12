@@ -19,6 +19,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       title: 'Test Algo Studio',
       theme: ThemeData(
+        colorSchemeSeed: Colors.blue,
         useMaterial3: true,
         textTheme: GoogleFonts.latoTextTheme(),
         scaffoldBackgroundColor: Colors.grey[100],

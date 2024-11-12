@@ -2,6 +2,7 @@ import 'package:easy_sticky_header/easy_sticky_header.dart';
 import 'package:flutter/material.dart';
 import 'package:test_algo_studio/domain/entity/task_group.dart';
 import 'package:test_algo_studio/presentation/screen/task/widget/task_date_header.dart';
+import 'package:test_algo_studio/presentation/screen/task/widget/task_item.dart';
 
 class ListTask extends StatelessWidget {
   final List<TaskGroup> tasks;
@@ -30,13 +31,7 @@ class ListTask extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(vertical: 8),
                 itemBuilder: (context, index) {
                   final task = data.tasks[index];
-                  return Card(
-                    margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    child: ListTile(
-                      title: Text(task.title),
-                      subtitle: Text(task.description),
-                    ),
-                  );
+                  return TaskItem(task: task);
                 },
               ),
             ],

@@ -18,6 +18,7 @@ final _privateConstructorUsedError = UnsupportedError(
 mixin _$TaskState {
   AsyncValue<List<TaskGroup>> get allTask => throw _privateConstructorUsedError;
   AsyncValue<bool> get addTask => throw _privateConstructorUsedError;
+  AsyncValue<bool> get updateTask => throw _privateConstructorUsedError;
   AsyncValue<bool> get deleteTask => throw _privateConstructorUsedError;
 
   /// Create a copy of TaskState
@@ -35,6 +36,7 @@ abstract class $TaskStateCopyWith<$Res> {
   $Res call(
       {AsyncValue<List<TaskGroup>> allTask,
       AsyncValue<bool> addTask,
+      AsyncValue<bool> updateTask,
       AsyncValue<bool> deleteTask});
 }
 
@@ -55,6 +57,7 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
   $Res call({
     Object? allTask = null,
     Object? addTask = null,
+    Object? updateTask = null,
     Object? deleteTask = null,
   }) {
     return _then(_value.copyWith(
@@ -65,6 +68,10 @@ class _$TaskStateCopyWithImpl<$Res, $Val extends TaskState>
       addTask: null == addTask
           ? _value.addTask
           : addTask // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<bool>,
+      updateTask: null == updateTask
+          ? _value.updateTask
+          : updateTask // ignore: cast_nullable_to_non_nullable
               as AsyncValue<bool>,
       deleteTask: null == deleteTask
           ? _value.deleteTask
@@ -85,6 +92,7 @@ abstract class _$$TaskStateImplCopyWith<$Res>
   $Res call(
       {AsyncValue<List<TaskGroup>> allTask,
       AsyncValue<bool> addTask,
+      AsyncValue<bool> updateTask,
       AsyncValue<bool> deleteTask});
 }
 
@@ -103,6 +111,7 @@ class __$$TaskStateImplCopyWithImpl<$Res>
   $Res call({
     Object? allTask = null,
     Object? addTask = null,
+    Object? updateTask = null,
     Object? deleteTask = null,
   }) {
     return _then(_$TaskStateImpl(
@@ -113,6 +122,10 @@ class __$$TaskStateImplCopyWithImpl<$Res>
       addTask: null == addTask
           ? _value.addTask
           : addTask // ignore: cast_nullable_to_non_nullable
+              as AsyncValue<bool>,
+      updateTask: null == updateTask
+          ? _value.updateTask
+          : updateTask // ignore: cast_nullable_to_non_nullable
               as AsyncValue<bool>,
       deleteTask: null == deleteTask
           ? _value.deleteTask
@@ -126,18 +139,23 @@ class __$$TaskStateImplCopyWithImpl<$Res>
 
 class _$TaskStateImpl implements _TaskState {
   const _$TaskStateImpl(
-      {required this.allTask, required this.addTask, required this.deleteTask});
+      {required this.allTask,
+      required this.addTask,
+      required this.updateTask,
+      required this.deleteTask});
 
   @override
   final AsyncValue<List<TaskGroup>> allTask;
   @override
   final AsyncValue<bool> addTask;
   @override
+  final AsyncValue<bool> updateTask;
+  @override
   final AsyncValue<bool> deleteTask;
 
   @override
   String toString() {
-    return 'TaskState(allTask: $allTask, addTask: $addTask, deleteTask: $deleteTask)';
+    return 'TaskState(allTask: $allTask, addTask: $addTask, updateTask: $updateTask, deleteTask: $deleteTask)';
   }
 
   @override
@@ -147,12 +165,15 @@ class _$TaskStateImpl implements _TaskState {
             other is _$TaskStateImpl &&
             (identical(other.allTask, allTask) || other.allTask == allTask) &&
             (identical(other.addTask, addTask) || other.addTask == addTask) &&
+            (identical(other.updateTask, updateTask) ||
+                other.updateTask == updateTask) &&
             (identical(other.deleteTask, deleteTask) ||
                 other.deleteTask == deleteTask));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, allTask, addTask, deleteTask);
+  int get hashCode =>
+      Object.hash(runtimeType, allTask, addTask, updateTask, deleteTask);
 
   /// Create a copy of TaskState
   /// with the given fields replaced by the non-null parameter values.
@@ -167,12 +188,15 @@ abstract class _TaskState implements TaskState {
   const factory _TaskState(
       {required final AsyncValue<List<TaskGroup>> allTask,
       required final AsyncValue<bool> addTask,
+      required final AsyncValue<bool> updateTask,
       required final AsyncValue<bool> deleteTask}) = _$TaskStateImpl;
 
   @override
   AsyncValue<List<TaskGroup>> get allTask;
   @override
   AsyncValue<bool> get addTask;
+  @override
+  AsyncValue<bool> get updateTask;
   @override
   AsyncValue<bool> get deleteTask;
 

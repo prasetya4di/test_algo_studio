@@ -9,5 +9,7 @@ class TaskEvent with _$TaskEvent {
 
   const factory TaskEvent.add(Task task) = Add;
 
+  const factory TaskEvent.update(Task task) = Update;
+
   const factory TaskEvent.delete(Task task) = Delete;
 }
