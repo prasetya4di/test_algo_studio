@@ -66,6 +66,7 @@ class _SelectTimeBottomSheetState extends State<SelectTimeBottomSheet> {
               children: [
                 BaseNumberPicker(
                   value: _selectedHour,
+                  maxValue: 23,
                   onChanged: (value) {
                     setState(() {
                       _selectedHour = value;

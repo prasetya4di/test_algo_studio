@@ -73,9 +73,7 @@ class _ListTaskState extends ConsumerState<ListTask> {
               _tasks[index].tasks.removeAt(taskIndex);
 
               if (_tasks[index].tasks.isEmpty) {
-                setState(() {
-                  _tasks.removeAt(index);
-                });
+                _tasks.removeAt(index);
                 _headerListKey.currentState?.removeItem(
                   index,
                   (context, animation) => SizeTransition(

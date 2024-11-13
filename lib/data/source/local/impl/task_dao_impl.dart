@@ -36,10 +36,13 @@ class TaskDaoImpl implements TaskDao {
   @override
   Future<Task> insert(Task task) async {
     final box = await Hive.openBox<Task>(_boxName);
-    final key = box.keys
-            .cast<int>()
-            .reduce((value, element) => value > element ? value : element) +
-        1;
+    int key = 0;
+    if (box.isNotEmpty) {
+      key = box.keys
+              .cast<int>()
+              .reduce((value, element) => value > element ? value : element) +
+          1;
+    }
     final newTaskWithId = task.copyWith(id: key);
     await box.add(task.copyWith(id: key));
     await box.close();
