@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:test_algo_studio/domain/entity/task.dart';
-import 'package:test_algo_studio/domain/entity/task_group.dart';
 import 'package:test_algo_studio/domain/use_case/add_task.dart';
 import 'package:test_algo_studio/domain/use_case/delete_task.dart';
 import 'package:test_algo_studio/domain/use_case/get_task.dart';
@@ -52,19 +51,9 @@ class TaskController extends BaseController<TaskEvent, TaskState> {
         tasks: [...prevData.tasks, newTask],
       );
       prevAllData[index] = newTaskGroup;
-      state = state.copyWith(
-        allTask: AsyncValue.data(prevAllData),
-        newTask: newTask,
-      );
+      state = state.copyWith(newTask: newTask);
     } else {
-      final newTaskGroup = TaskGroup(
-        date: newTask.date,
-        tasks: [newTask],
-      );
-      state = state.copyWith(
-        allTask: AsyncValue.data([...prevAllData, newTaskGroup]),
-        newTask: newTask,
-      );
+      state = state.copyWith(newTask: newTask);
     }
     state = state.copyWith(addTask: const AsyncValue.data(true));
   }
@@ -89,8 +78,10 @@ class TaskController extends BaseController<TaskEvent, TaskState> {
             prevData.tasks.where((element) => element.id != task.id).toList(),
       );
       prevAllData[index] = newTaskGroup;
-      state = state.copyWith(allTask: const AsyncValue.data([]));
-      state = state.copyWith(allTask: AsyncValue.data(prevAllData));
+      state = state.copyWith(
+        allTask: AsyncValue.data(prevAllData),
+        deletedTask: task,
+      );
     }
     state = state.copyWith(deleteTask: const AsyncValue.data(true));
   }
