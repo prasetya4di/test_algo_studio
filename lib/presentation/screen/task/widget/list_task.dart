@@ -129,7 +129,7 @@ class _ListTaskState extends ConsumerState<ListTask> {
                         begin: const Offset(1, 0),
                         end: const Offset(0, 0),
                       ).animate(animation),
-                      child: TaskItem(task: task),
+                      child: TaskItem(key: Key("${task.id}"),task: task),
                     );
                   },
                 ),
